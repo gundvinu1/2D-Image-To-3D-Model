@@ -76,18 +76,8 @@ def run_example(image_pil):
     return preprocessed, mesh_name_obj, mesh_name_glb
 
 
-with gr.Blocks(title="TripoSR") as interface:
-    gr.Markdown(
-        """
-    # TripoSR Demo
-    [TripoSR](https://github.com/VAST-AI-Research/TripoSR) is a state-of-the-art open-source model for **fast** feedforward 3D reconstruction from a single image, collaboratively developed by [Tripo AI](https://www.tripo3d.ai/) and [Stability AI](https://stability.ai/).
-    
-    **Tips:**
-    1. If you find the result is unsatisfied, please try to change the foreground ratio. It might improve the results.
-    2. It's better to disable "Remove Background" for the provided examples (except fot the last one) since they have been already preprocessed.
-    3. Otherwise, please disable "Remove Background" option only if your input image is RGBA with transparent background, image contents are centered and occupy more than 70% of image width or height.
-    """
-    )
+with gr.Blocks(title="2D to 3D Model") as interface:
+
     with gr.Row(variant="panel"):
         with gr.Column():
             with gr.Row():
@@ -181,7 +171,7 @@ if __name__ == '__main__':
     interface.queue(max_size=args.queuesize)
     interface.launch(
         auth=(args.username, args.password) if (args.username and args.password) else None,
-        share=args.share,
+        share=True,
         server_name="0.0.0.0" if args.listen else None, 
         server_port=args.port
     )
